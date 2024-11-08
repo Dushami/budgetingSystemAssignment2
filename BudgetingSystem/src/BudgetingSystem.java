@@ -4,6 +4,9 @@ public class BudgetingSystem {
 
         budget.loadFile("table-content.txt");
         budget.displayInformation();
+        //System.out.println("Total expenditure: £" + budget.getTotalExpenditure());
+        //budget.displayMonthlyExpenditure();
+        budget.displayAverageMonthlyItemCost();
 
 //        budget.randomPopulateTable();
 //        budget.displayInformation();

@@ -46,6 +46,82 @@ public class Budget {
     }
 
     /**
+     * A method to calculate the expenditure of the entire year
+     */
+    public double getTotalExpenditure() {
+        double total = 0.0;
+        for (int i = 0; i < expenditure.length; i++) {
+            for (int j = 0; j < expenditure[i].length; j++) {
+                total += expenditure[i][j];
+            }
+        }
+        return total;
+    }
+
+    /**
+     * Method to calculate an expenditure from only a single month
+     * and display Month : Spend
+     *
+     * @return
+     */
+    public void displayMonthlyExpenditure() {
+        double[] monthlyTotal = new double[12];
+
+        // Calculate totals for each month
+        for (int i = 0; i < expenditure.length; i++) {
+            double total = 0;
+            for (int j = 0; j < expenditure[i].length; j++) {
+                total += expenditure[i][j];
+            }
+            monthlyTotal[i] = total;
+        }
+
+        System.out.println("--------------------");
+        System.out.println("Monthly Expenditure:");
+        System.out.println("--------------------");
+        String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+
+        for (int i = 0; i < monthlyTotal.length; i++) {
+            System.out.printf("%-12s: £%.2f%n", months[i], monthlyTotal[i]);
+        }
+    }
+
+    /**
+     * A method which will calculate and display the average cost of
+     * each of the categories through the entire year.
+     */
+    public void displayAverageMonthlyItemCost() {
+        double[] totalSpend = new double[4];
+        int months = expenditure.length;
+
+        // Calculate total spend for each category
+        for (int i = 0; i < months; i++) {
+            for (int j = 0; j < expenditure[i].length; j++) {
+                totalSpend[j] += expenditure[i][j]; // Sum the expenditures for each category
+            }
+        }
+
+        // Calculate averages
+        double[] averageSpend = new double[4];
+        for (int j = 0; j < totalSpend.length; j++) {
+            averageSpend[j] = totalSpend[j] / months; // Calculate average for each category
+        }
+
+        // Display the results in the desired format
+        System.out.println("---------------------------");
+        System.out.println("Average Monthly Expenditure:");
+        System.out.println("---------------------------");
+        String[] categories = {"Food (£)", "Rent (£)", "Clothes (£)", "Socialising (£)"};
+
+        // Print averages with formatting
+        for (int j = 0; j < averageSpend.length; j++) {
+            System.out.printf("%-15s : £%-10.2f%n", categories[j], averageSpend[j]); // Format each line
+        }
+        System.out.println("---------------------------");
+    }
+
+
+    /**
      * Method to read "table-content.txt" and populate
      * table with this information instead of randomPopulateTable()
      *
@@ -57,7 +133,7 @@ public class Budget {
             int i = 0;
 
             while ((line = br.readLine()) != null && i < expenditure.length) {
-                String[] values = line.split(","); // Split by comma
+                String[] values = line.split(",");
                 for (int j = 0; j < values.length && j < expenditure[i].length; j++) {
                     expenditure[i][j] = Double.parseDouble(values[j].trim());
                 }
