@@ -151,9 +151,13 @@ public class Budget {
     /**
      * Method allowing user to save a file with a table of the expenditure
      *
-     * @param saveName
      */
-    public void saveFile(String saveName) {
+    public void saveFile() {
+        String saveName;
+        Scanner file = new Scanner(System.in);
+        System.out.println("What would you like to name the file?");
+        saveName = file.nextLine();
+
         try (PrintWriter pw = new PrintWriter(new FileWriter(saveName))) {
             for (int i = 0; i < expenditure.length; i++) {
                 for (int j = 0; j < expenditure[i].length; j++) {
