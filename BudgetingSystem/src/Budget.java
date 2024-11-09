@@ -67,7 +67,6 @@ public class Budget {
     public void displayMonthlyExpenditure() {
         double[] monthlyTotal = new double[12];
 
-        // Calculate totals for each month
         for (int i = 0; i < expenditure.length; i++) {
             double total = 0;
             for (int j = 0; j < expenditure[i].length; j++) {
@@ -94,30 +93,55 @@ public class Budget {
         double[] totalSpend = new double[4];
         int months = expenditure.length;
 
-        // Calculate total spend for each category
         for (int i = 0; i < months; i++) {
             for (int j = 0; j < expenditure[i].length; j++) {
-                totalSpend[j] += expenditure[i][j]; // Sum the expenditures for each category
+                totalSpend[j] += expenditure[i][j];
             }
         }
 
-        // Calculate averages
         double[] averageSpend = new double[4];
         for (int j = 0; j < totalSpend.length; j++) {
-            averageSpend[j] = totalSpend[j] / months; // Calculate average for each category
+            averageSpend[j] = totalSpend[j] / months;
         }
 
-        // Display the results in the desired format
         System.out.println("---------------------------");
         System.out.println("Average Monthly Expenditure:");
         System.out.println("---------------------------");
         String[] categories = {"Food (£)", "Rent (£)", "Clothes (£)", "Socialising (£)"};
 
-        // Print averages with formatting
         for (int j = 0; j < averageSpend.length; j++) {
-            System.out.printf("%-15s : £%-10.2f%n", categories[j], averageSpend[j]); // Format each line
+            System.out.printf("%-15s : £%-10.2f%n", categories[j], averageSpend[j]);
         }
         System.out.println("---------------------------");
+    }
+
+    /**
+     * Method to figure out the highest spend in each category
+     * and display alongside the month that the value correlates with
+     */
+
+    public void displayHighestSpends() {
+        String[] items = {"Food", "Rent", "Clothes", "Socialising"};
+        String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+
+        System.out.println("----------------------------");
+        System.out.println("Most spent on each category:");
+        System.out.println("----------------------------");
+        System.out.println("Item         Spend       Month");
+
+        for (int column = 0; column < expenditure[0].length; column++) {
+            double highestSpend = 0;
+            int highestMonthIndex = 0;
+
+            for (int row = 0; row < expenditure.length; row++) {
+                if (expenditure[row][column] > highestSpend) {
+                    highestSpend = expenditure[row][column];
+                    highestMonthIndex = row;
+                }
+            }
+
+            System.out.printf("%-12s £%-10.2f %-8s%n", items[column], highestSpend, months[highestMonthIndex]);
+        }
     }
 
 

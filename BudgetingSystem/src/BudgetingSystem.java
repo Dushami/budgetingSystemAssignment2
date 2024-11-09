@@ -32,52 +32,50 @@ public class BudgetingSystem {
     }
 
     public static void main(String[] args) {
-        /**
-         * Create instances of each class
-         */
-        BudgetingSystem budgetingSystem = new BudgetingSystem();
-        Budget budget = new Budget();
-        int menuChoice;
+//        /**
+//         * Create instances of each class
+//         */
+//        BudgetingSystem budgetingSystem = new BudgetingSystem();
+//        Budget budget = new Budget();
+//        int menuChoice;
+//
+//        /**
+//         * do...while to loop the menu and exit when user selects option 7
+//         */
+//        do {
+//            menuChoice = budgetingSystem.getMenuChoice();
+//            switch (menuChoice) {
+//                case 1:
+//                    budget.loadFile("table-content.txt");
+//                    break;
+//                case 2:
+//                    budget.displayInformation();
+//                    break;
+//                case 3:
+//                    System.out.println("Total expenditure: £" + budget.getTotalExpenditure());
+//                    break;
+//                case 4:
+//                    budget.displayMonthlyExpenditure();
+//                    break;
+//                case 5:
+//                    budget.displayAverageMonthlyItemCost();
+//                    break;
+//                case 6:
+//                    budget.saveFile();
+//                    break;
+//                case 7:
+//                    System.out.println("Thank you for using our budgeting system, Now Exiting program");
+//                    System.exit(0);
+//                    break;
+//                default:
+//                    System.out.println("Invalid choice. Please try again.");
+//                    break;
+//            }
+//        } while (menuChoice != 7);
 
-        /**
-         * do...while to loop the menu and exit when user selects option 7
-         */
-        do {
-            menuChoice = budgetingSystem.getMenuChoice();
-            switch (menuChoice) {
-                case 1:
-                    budget.loadFile("table-content.txt");
-                    break;
-                case 2:
-                    budget.displayInformation();
-                    break;
-                case 3:
-                    System.out.println("Total expenditure: £" + budget.getTotalExpenditure());
-                    break;
-                case 4:
-                    budget.displayMonthlyExpenditure();
-                    break;
-                case 5:
-                    budget.displayAverageMonthlyItemCost();
-                    break;
-                case 6:
-                    budget.saveFile();
-                    break;
-                case 7:
-                    System.out.println("Thank you for using our budgeting system, Now Exiting program");
-                    System.exit(0);
-                    break;
-                default:
-                    System.out.println("Invalid choice. Please try again.");
-                    break;
-            }
-        } while (menuChoice != 7);
+        Budget budget = new Budget();
+        budget.randomPopulateTable();
+        budget.displayInformation();
+        budget.displayHighestSpends();
     }
 }
-
-//        budget.randomPopulateTable();
-//        budget.displayInformation();
-//        budget.saveFile();
-//
-//        budget.loadFile("randomTable.txt");
-//      budget.displayInformation();
