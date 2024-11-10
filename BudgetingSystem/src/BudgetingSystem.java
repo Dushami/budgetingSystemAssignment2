@@ -91,16 +91,18 @@ public class BudgetingSystem {
             }
         } while (menuChoice != 7);
 
-//        Budget budget = new Budget();
 //        budget.randomPopulateTable();
 //        budget.displayInformation();
 //        budget.displayHighestSpends();
 
-//        Budget budget = new Budget();
 //        budget.randomPopulateTable();
 //        budget.displayInformation();
 //        budget.saveFile();
-//        budget.loadFile("HopefullyEncrypted.txt");
+//        budget.loadFile("*****MAKE THIS VALUE THE NAME YOU'RE GOING TO CALL THE FILE YOU SAVE");
 //        budget.displayInformation();
+
+//        budget.populate2DArrayOfObjects();
+//        budget.displayObjectTable();
+
     }
 }

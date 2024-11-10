@@ -56,6 +56,15 @@ public class Budget {
         }
     }
 
+    public void populate2DArrayOfObjects() {
+        for (int i = 0; i < 12; i++) {
+            for (int j = 0; j < 4; j++) {
+                expenditureTable[i][j].setAmount(Math.random() * 101);
+            }
+        }
+    }
+
+
     /**
      * A method to calculate the expenditure of the entire year
      */
@@ -254,6 +263,24 @@ public class Budget {
         }
         System.out.println("-------------------------------------------------------------------------------");
     }
+
+    public void displayObjectTable() {
+        System.out.println("-------------------------------------------------------------------------------");
+        System.out.printf("| %-12s | %-12s | %-12s | %-12s | %-12s |%n", "Month", "Food (£)", "Rent (£)", "Clothes (£)", "Socialising (£)");
+        System.out.println("-------------------------------------------------------------------------------");
+        String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+
+
+        for (int i = 0; i < 12; i++) {
+            System.out.printf("| %-12s ", months[i]);
+            for (int j = 0; j < 4; j++) {
+                System.out.printf("| %-13.2f", expenditureTable[i][j].getAmount());
+            }
+            System.out.println("   |");;
+        }
+        System.out.println("-------------------------------------------------------------------------------");
+    }
+
 
 }
 
