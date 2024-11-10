@@ -31,51 +31,76 @@ public class BudgetingSystem {
         return choice.nextInt();
     }
 
-    public static void main(String[] args) {
-//        /**
-//         * Create instances of each class
-//         */
-//        BudgetingSystem budgetingSystem = new BudgetingSystem();
-//        Budget budget = new Budget();
-//        int menuChoice;
-//
-//        /**
-//         * do...while to loop the menu and exit when user selects option 7
-//         */
-//        do {
-//            menuChoice = budgetingSystem.getMenuChoice();
-//            switch (menuChoice) {
-//                case 1:
-//                    budget.loadFile("table-content.txt");
-//                    break;
-//                case 2:
-//                    budget.displayInformation();
-//                    break;
-//                case 3:
-//                    System.out.println("Total expenditure: £" + budget.getTotalExpenditure());
-//                    break;
-//                case 4:
-//                    budget.displayMonthlyExpenditure();
-//                    break;
-//                case 5:
-//                    budget.displayAverageMonthlyItemCost();
-//                    break;
-//                case 6:
-//                    budget.saveFile();
-//                    break;
-//                case 7:
-//                    System.out.println("Thank you for using our budgeting system, Now Exiting program");
-//                    System.exit(0);
-//                    break;
-//                default:
-//                    System.out.println("Invalid choice. Please try again.");
-//                    break;
-//            }
-//        } while (menuChoice != 7);
+    private static String fileName;
 
+    public String getLoadChoice(){
+        Scanner choice = new Scanner(System.in);
+
+
+        System.out.println("-------------------------------------------------");
+        System.out.println("Type the name of the file you would like to load?");
+        System.out.println("-------------------------------------------------");
+        fileName = choice.nextLine();
+        return fileName;
+    }
+
+    public static void main(String[] args) {
+        /**
+         * Create instances of each class
+         */
+        BudgetingSystem budgetingSystem = new BudgetingSystem();
         Budget budget = new Budget();
-        budget.randomPopulateTable();
-        budget.displayInformation();
-        budget.displayHighestSpends();
+        int menuChoice;
+
+        /**
+         * do...while to loop the menu and exit when user selects option 7
+         */
+        do {
+            menuChoice = budgetingSystem.getMenuChoice();
+            switch (menuChoice) {
+                case 1:
+                    if(budgetingSystem.getLoadChoice().equals("table-content.txt")){
+                        budget.tableContentLoadFile();
+                    } else {
+                        budget.loadFile(fileName);
+
+                    }
+                    break;
+                case 2:
+                    budget.displayInformation();
+                    break;
+                case 3:
+                    System.out.println("Total expenditure: £" + budget.getTotalExpenditure());
+                    break;
+                case 4:
+                    budget.displayMonthlyExpenditure();
+                    break;
+                case 5:
+                    budget.displayAverageMonthlyItemCost();
+                    break;
+                case 6:
+                    budget.saveFile();
+                    break;
+                case 7:
+                    System.out.println("Thank you for using our budgeting system, Now Exiting program");
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+                    break;
+            }
+        } while (menuChoice != 7);
+
+//        Budget budget = new Budget();
+//        budget.randomPopulateTable();
+//        budget.displayInformation();
+//        budget.displayHighestSpends();
+
+//        Budget budget = new Budget();
+//        budget.randomPopulateTable();
+//        budget.displayInformation();
+//        budget.saveFile();
+//        budget.loadFile("HopefullyEncrypted.txt");
+//        budget.displayInformation();
     }
 }

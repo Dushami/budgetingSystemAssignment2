@@ -16,6 +16,7 @@ import java.util.Scanner;
 public class Budget {
     //Array for monthly expenditure
     private double[][] expenditure = new double[12][4];
+    private double randomKey = (Math.random()*101);
 
     /**
      * Default constructor setting all values to 0.0
@@ -144,6 +145,28 @@ public class Budget {
         }
     }
 
+    /**
+     * Special Method to load "Table-Content.txt"
+     * this file goes through no encryption so loading normally will
+     * change the data with respect to randomKey
+     */
+    public void tableContentLoadFile(){
+        try (BufferedReader br = new BufferedReader(new FileReader("table-content.txt"))) {
+            String line;
+            int i = 0;
+
+            while ((line = br.readLine()) != null && i < expenditure.length) {
+                String[] values = line.split(",");
+                for (int j = 0; j < values.length && j < expenditure[i].length; j++) {
+                    expenditure[i][j] = Double.parseDouble(values[j].trim());
+                }
+                i++;
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading file: " + e.getMessage());
+        }
+    }
+
 
     /**
      * Method to read "table-content.txt" and populate
@@ -159,7 +182,8 @@ public class Budget {
             while ((line = br.readLine()) != null && i < expenditure.length) {
                 String[] values = line.split(",");
                 for (int j = 0; j < values.length && j < expenditure[i].length; j++) {
-                    expenditure[i][j] = Double.parseDouble(values[j].trim());
+                    double encryptedValue = Double.parseDouble(values[j].trim());
+                    expenditure[i][j] = (encryptedValue/randomKey);
                 }
                 i++;
             }
@@ -185,7 +209,7 @@ public class Budget {
         try (PrintWriter pw = new PrintWriter(new FileWriter(saveName))) {
             for (int i = 0; i < expenditure.length; i++) {
                 for (int j = 0; j < expenditure[i].length; j++) {
-                    pw.print(expenditure[i][j]);
+                    pw.print(expenditure[i][j]*randomKey);
                     if (j < expenditure[i].length - 1) {
                         pw.print(",");
                     }
