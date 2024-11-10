@@ -17,14 +17,24 @@ public class Budget {
     //Array for monthly expenditure
     private double[][] expenditure = new double[12][4];
     private double randomKey = (Math.random()*101);
+    private AmountSpent[][] expenditureTable;
 
     /**
      * Default constructor setting all values to 0.0
+     *
+     * also make object array and initialize
      */
     public Budget() {
         for (int i = 0; i < expenditure.length; i++) {
             for (int j = 0; j < expenditure[i].length; j++) {
                 expenditure[i][j] = 0.0;
+            }
+        }
+
+        expenditureTable = new AmountSpent[12][4];
+        for (int i = 0; i < 12; i++) {
+            for (int j = 0; j < 4; j++) {
+                expenditureTable[i][j] = new AmountSpent();
             }
         }
     }
